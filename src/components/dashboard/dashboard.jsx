@@ -8,13 +8,11 @@ import { all_teachers, current_teacher } from "../../redux/teacher/action";
 export default function Dashboard() {
   const dispatch = useDispatch();
   const admin = useSelector((state) => state.admin);
-  const navigate =useNavigate()
+  const navigate = useNavigate();
 
   if (!admin.isAuthenticated) {
-      navigate("/admin_log")
-   
+    navigate("/admin_log");
   }
-
 
   const [page, setpage] = React.useState(1);
 
@@ -43,13 +41,15 @@ export default function Dashboard() {
       setdata(res.data);
       console.log(res.data);
     });
-  }, [querry,page]);
+  }, [querry, page]);
 
   const handledelete = (el) => {
-    axios.delete(`https://school-teachers-api.herokuapp.com/teacher/${el._id}`).then((res) => {
-      console.log(res, data);
-      setrefresh(Math.random());
-    });
+    axios
+      .delete(`https://school-teachers-api.herokuapp.com/teacher/${el._id}`)
+      .then((res) => {
+        console.log(res, data);
+        setrefresh(Math.random());
+      });
 
     axios.get(init_url).then((res) => {
       dispatch(all_teachers(res.data));
@@ -59,7 +59,7 @@ export default function Dashboard() {
 
   const handleedit = (el) => {
     dispatch(current_teacher(el._id));
- 
+
     navigate("/update_teacher");
   };
 
@@ -69,16 +69,28 @@ export default function Dashboard() {
   };
   const teachers = useSelector((state) => state.teacher);
 
-  console.log(teachers);
+  const [teachername, setteachername] = React.useState("");
 
-  console.log(init_url)
+  const handlesearch =()=>{
+
+    axios.get(`https://school-teachers-api.herokuapp.com/teacher/${teachername}`).then((res)=>{
+        setdata(res.data);
+       
+    })
+  }
 
   return (
     <div>
       <div id="all filters">
         <div>
-          <input type="text" />
-          <button>search</button>
+          <input
+            type="text"
+            value={teachername}
+            onChange={(e) => {
+              setteachername(e.target.value);
+            }}
+          />
+          <button onClick={handlesearch}>search</button>
         </div>
         <button onClick={handlebutton} value="male" name="gender">
           Male

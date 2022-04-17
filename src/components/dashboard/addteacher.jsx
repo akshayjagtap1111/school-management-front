@@ -1,56 +1,53 @@
 import axios from "axios";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addteacher } from "../../redux/teacher/action";
 
 export default function Addteacher() {
   const initial = {
     first_name: "",
     last_name: "",
     email: "",
-    address: "",
-    phone_number: "",
     age: 23,
     gender: "",
   };
-  const [teacherdata,setteacherdata]=React.useState(initial)
+  const [teacherdata, setteacherdata] = React.useState(initial);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setteacherdata((prev) => ({ ...prev, [name]: value }));
+  };
+  const dispatch = useDispatch();
+
+  const postTeacher = () => {
+    dispatch(addteacher(teacherdata));
 
 
-  const handleChange =(e)=>{
-      
-    const {name,value} =e.target;
+    //     console.log(teacherdata)
+    //    let  teacher = JSON.stringify(teacherdata)
 
-    setteacherdata((prev)=>({...prev,[name]:value}))
+    //     axios.post("https://school-teachers-api.herokuapp.com/teacher",teacher).then((res)=>{
 
-  }
+    //     console.log(res.data)
+    //         alert("teacher added succesfully")
+    //     })
 
-const postTeacher =()=>{
+    //     console.log(teacher)
 
-    console.log(teacherdata)
-   let  teacher = JSON.stringify(teacherdata)
+    // let reg_api = `http://localhost:3000/teacher`
 
-    axios.post("https://school-teachers-api.herokuapp.com/teacher",teacher).then((res)=>{
+    //  fetch(reg_api,{
+    //   method:"POST",
+    //   body:teacher,
+    //   headers:{
+    //     "Content-Type":"application/json",
+    //   },
+    // });
+  };
 
-    console.log(res.data)
-        alert("teacher added succesfully")
-    })
-
-    console.log(teacher)
-
-
-// let reg_api = `http://localhost:3000/teacher`
-    
-//  fetch(reg_api,{
-//   method:"POST",
-//   body:teacher,
-//   headers:{
-//     "Content-Type":"application/json",
-//   },
-// });
-
-
-
-}
-
-  const {first_name,last_name,email,address,phone_number,age,gender} =teacherdata
+  const { first_name, last_name, email, address, phone_number, age, gender } =
+    teacherdata;
   return (
     <div>
       <input
@@ -84,7 +81,7 @@ const postTeacher =()=>{
         value={age}
         onChange={handleChange}
       />
-<br />
+      <br />
       <input
         type="text"
         placeholder="enter gender"
