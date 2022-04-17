@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+#navbar>a{
+  padding: 10px;
+}
+
+table td,th tr{
+  border:solid red 1px;
+  
+}
