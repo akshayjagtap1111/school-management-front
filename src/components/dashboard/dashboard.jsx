@@ -7,8 +7,14 @@ import { all_teachers, current_teacher } from "../../redux/teacher/action";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
+  const admin = useSelector((state) => state.admin);
+  const navigate =useNavigate()
 
-  const navigate = useNavigate();
+  if (!admin.isAuthenticated) {
+      navigate("/admin_log")
+   
+  }
+
 
   const [page, setpage] = React.useState(1);
 
@@ -27,9 +33,9 @@ export default function Dashboard() {
 
     setquerry((prev) => ({ ...prev, [name]: value }));
   };
-  //////////////////////////////////////////////////////// change url
+
   const { qty, order, gender } = querry;
-  let init_url = `http://localhost:3000/teacher?page=${page}&qty=${qty}&order=${order}&gender=${gender}`;
+  let init_url = `https://school-teachers-api.herokuapp.com/teacher?page=${page}&qty=${qty}&order=${order}&gender=${gender}`;
 
   React.useEffect(() => {
     axios.get(init_url).then((res) => {
@@ -40,7 +46,7 @@ export default function Dashboard() {
   }, [querry,page]);
 
   const handledelete = (el) => {
-    axios.delete(`http://localhost:3000/teacher/${el._id}`).then((res) => {
+    axios.delete(`https://school-teachers-api.herokuapp.com/teacher/${el._id}`).then((res) => {
       console.log(res, data);
       setrefresh(Math.random());
     });
@@ -53,7 +59,7 @@ export default function Dashboard() {
 
   const handleedit = (el) => {
     dispatch(current_teacher(el._id));
-    ///////////////////////////////////////////////// set it to localstorage
+ 
     navigate("/update_teacher");
   };
 

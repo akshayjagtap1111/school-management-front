@@ -14,7 +14,7 @@ export default function Displayclass() {
 
   React.useEffect(() => {
     axios
-      .get(`http://localhost:3000/class/${teachers.currentTeacher}`)
+      .get(`https://school-teachers-api.herokuapp.com/class/${teachers.currentTeacher}`)
       .then((res) => {
         console.log(res.data);
         setclassdata(res.data);
@@ -24,7 +24,7 @@ export default function Displayclass() {
   }, []);
 
   const handledelete = (el) => {
-    axios.delete(`http://localhost:3000/class/${el._id}`).then((res) => {
+    axios.delete(`https://school-teachers-api.herokuapp.com/class/${el._id}`).then((res) => {
       console.log(res.data);
       setrefresh(Math.random());
     });
@@ -42,7 +42,9 @@ export default function Displayclass() {
 
   return (
     <div>
+         <h3>classes</h3>
       <div id="displaydiv">
+         
         <table>
           <tbody>
             <tr>

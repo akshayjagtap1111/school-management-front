@@ -40,7 +40,7 @@ export const userlogin =(userDetails)=>(dispatch)=>{
 
     dispatch(login_loading());
     axios
-      .post("http://localhost:3000/login", userDetails)
+      .post("https://school-teachers-api.herokuapp.com/login", userDetails)
       .then((res) => {
         console.log(".then");
         dispatch(login_success(res.data));
@@ -49,6 +49,27 @@ export const userlogin =(userDetails)=>(dispatch)=>{
         dispatch(login_failure());
         console.log(".catch");
         alert("please enter valid credentials");
+      });
+
+}
+
+export const userregister =(userDetails)=>(dispatch)=>{
+
+    console.log(userDetails)
+
+    console.log("dispatching........")
+
+    dispatch(login_loading());
+    axios
+      .post("https://school-teachers-api.herokuapp.com/register", userDetails)
+      .then((res) => {
+        console.log(".then");
+     
+      })
+      .catch((err) => {
+        dispatch(login_failure());
+        console.log(".catch");
+       
       });
 
 }

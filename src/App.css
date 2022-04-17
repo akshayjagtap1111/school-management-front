@@ -41,7 +41,7 @@
   padding: 10px;
 }
 
-table td,th tr{
+table td,th,tr{
   border:solid red 1px;
-  
+
 }

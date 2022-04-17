@@ -27,7 +27,7 @@ const postTeacher =()=>{
     console.log(teacherdata)
    let  teacher = JSON.stringify(teacherdata)
 
-    axios.post("http://localhost:3000/teacher",teacher).then((res)=>{
+    axios.post("https://school-teachers-api.herokuapp.com/teacher",teacher).then((res)=>{
 
     console.log(res.data)
         alert("teacher added succesfully")

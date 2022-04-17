@@ -32,13 +32,15 @@ export default function Login() {
   };
 
 
-//   if (admin.isAuthenticated) {
-//     return <Navigate to="/" />;
-//   }
+  if (admin.isAuthenticated) {
+    return <Navigate to="/" />;
+  }
   const { email, password } = logData;
   return (
     <div>
       <h3>Welcome....please login</h3>
+      <p>email = amj8717@gmail.com</p>
+      <p>password = Akshay</p>
       <input
         type="text"
         placeholder="enter username"

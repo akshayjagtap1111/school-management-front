@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#container{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+table{
+  width: 80%;
+}
+
+#displaydiv{
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+}
+a{
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+  font-size: 20px;
+  margin: 5px;
+  border: solid black 1px;
+  margin-bottom: 20px;
+}
+input{
+  margin-top: 20px;
+}
